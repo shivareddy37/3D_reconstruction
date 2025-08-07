@@ -140,9 +140,7 @@ def run_reconstruction_pipeline_with_colmap(image_dir: Path, output_dir: Path) -
         return False
 
     # Export sparse reconstruction to PLY for visualization
-    sparse_ply_path = make_path(
-        reconstruction_path, "sparse.ply", create_if_not_exists=False
-    )
+    sparse_ply_path = make_path(reconstruction_path, "sparse.ply", create_if_not_exists=False)
     if not run_command(
         [
             "model_converter",
@@ -212,9 +210,7 @@ def run_reconstruction_pipeline_with_colmap(image_dir: Path, output_dir: Path) -
         return False
 
     # Step 7: Meshing (Poisson)
-    poisson_ply_path = make_path(
-        reconstruction_path, "meshed-poisson.ply", create_if_not_exists=False
-    )
+    poisson_ply_path = make_path(reconstruction_path, "meshed-poisson.ply", create_if_not_exists=False)
     if not run_command(
         [
             "poisson_mesher",
@@ -228,9 +224,7 @@ def run_reconstruction_pipeline_with_colmap(image_dir: Path, output_dir: Path) -
         return False
 
     # Step 8: Meshing (Delaunay)
-    delaunay_ply_path = make_path(
-        reconstruction_path, "meshed-delaunay.ply", create_if_not_exists=False
-    )
+    delaunay_ply_path = make_path(reconstruction_path, "meshed-delaunay.ply", create_if_not_exists=False)
     if not run_command(
         [
             "delaunay_mesher",
@@ -250,9 +244,7 @@ def run_reconstruction_pipeline_with_colmap(image_dir: Path, output_dir: Path) -
 
 
 @arg("-i", "--image_dir", default=get_image_dir(), help="Path to the image directory")
-@arg(
-    "-o", "--output_dir", default=get_output_dir(), help="Path to the output directory"
-)
+@arg("-o", "--output_dir", default=get_output_dir(), help="Path to the output directory")
 def main(
     image_dir: Path = get_image_dir(),
     output_dir: Path = get_output_dir(),
